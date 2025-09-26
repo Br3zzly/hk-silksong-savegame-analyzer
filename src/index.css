@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant hover (&:hover);
 html {
   scrollbar-gutter: stable both-edges;
   background-color: black;
