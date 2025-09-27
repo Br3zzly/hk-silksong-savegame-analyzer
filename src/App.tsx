@@ -46,7 +46,7 @@ const PLATFORM_OPTIONS: PlatformOption[] = [
   {
     id: "macOS",
     label: "macOS",
-    path: "~/Library/Application Support/Team Cherry/Hollow Knight Silksong/",
+    path: "~/Library/Application Support/unity.Team-Cherry.Silksong/",
   },
   {
     id: "Linux(Steamdeck)",
