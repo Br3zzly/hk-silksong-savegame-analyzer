@@ -2,12 +2,9 @@
 
 import { CATEGORIES, isItemUnlockedInPlayerSave } from "../parsers/dictionary";
 import type { TabRenderProps } from "./types";
+import { formatPercent } from "./utils";
 
 const CATEGORY_NAME = "Spool Fragments";
-
-function formatPercent(value: number): string {
-  return `${Number(value.toFixed(2))}%`;
-}
 
 export function SpoolFragmentsTab({ parsedJson, decrypted }: TabRenderProps) {
   if (!decrypted || !parsedJson) {

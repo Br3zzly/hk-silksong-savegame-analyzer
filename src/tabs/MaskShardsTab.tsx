@@ -2,12 +2,9 @@
 
 import { CATEGORIES, isItemUnlockedInPlayerSave } from "../parsers/dictionary";
 import type { TabRenderProps } from "./types";
+import { formatPercent } from "./utils";
 
 const MASK_SHARD_CATEGORY_NAME = "Mask Shards";
-
-function formatPercent(value: number): string {
-  return `${Number(value.toFixed(2))}%`;
-}
 
 export function MaskShardsTab({ parsedJson, decrypted }: TabRenderProps) {
   if (!decrypted || !parsedJson) {

@@ -2,12 +2,9 @@
 
 import { CATEGORIES, isItemUnlockedInPlayerSave } from "../parsers/dictionary";
 import type { TabRenderProps } from "./types";
+import { formatPercent } from "./utils";
 
 const CATEGORY_NAME = "Upgrades";
-
-function formatPercent(value: number): string {
-  return `${Number(value.toFixed(2))}%`;
-}
 
 function UpgradesTableSection({ section, upgrades, parsedJson }: { section: string; upgrades: any[]; parsedJson: any }) {
   if (upgrades.length === 0) return null;

@@ -94,8 +94,8 @@ export const tabDefinitions: TabDefinition[] = [
     getExtra: getBossesExtra,
   },
   {
-    id: "Hunters Journal",
-    label: "Hunters Journal",
+    id: "Hunter's Journal",
+    label: "Hunter's Journal",
     render: props => <HuntersJournalTab {...props} />,
     getExtra: getHuntersJournalExtra, 
   },

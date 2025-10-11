@@ -14,7 +14,7 @@ export type TabId =
   | "Craftmetals"
   | "Keys"
   | "Bosses"
-  | "Hunters Journal"
+  | "Hunter's Journal"
   | "JSON Editor";
 
 export interface TabRenderProps {

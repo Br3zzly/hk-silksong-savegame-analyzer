@@ -9,7 +9,7 @@ import { useSaveFile } from "./hooks/useSaveFile";
 import { tabDefinitions } from "./tabs";
 import type { TabId } from "./tabs/types";
 
-type PlatformId = "Steam" | "Gamepass(PC)" | "macOS" | "Linux(Steamdeck)" | "Switch";
+type PlatformId = "SteamWindows" | "SteamDeck" | "GamePassPC" | "macOS" | "Linux" | "Switch";
 
 type PlatformOption = {
   id: PlatformId;
@@ -20,12 +20,12 @@ type PlatformOption = {
 
 const PLATFORM_OPTIONS: PlatformOption[] = [
   {
-    id: "Steam",
-    label: "Steam",
-    path: "%userprofile%/appdata/LocalLow/Team Cherry/Hollow Knight Silksong/",
+    id: "SteamWindows",
+    label: "Steam (Windows)",
+    path: "%USERPROFILE%/AppData/LocalLow/Team Cherry/Hollow Knight Silksong/",
     note: (
       <>
-        /steamID (userX.dat, where x = savegame slot 1-4)  {" "}
+        /SteamID/userX.dat (where X = 1-4, denotes the save slot)  {" "}
         <a
           href="https://store.steampowered.com/account/remotestorageapp/?appid=1030300"
           className="underline text-green-300 hover:text-green-200"
@@ -38,10 +38,28 @@ const PLATFORM_OPTIONS: PlatformOption[] = [
     ),
   },
   {
-    id: "Gamepass(PC)",
-    label: "Gamepass (PC)",
+    id: "SteamDeck",
+    label: "Steam Deck (Linux)",
+    path: "~/.local/share/Team Cherry/Hollow Knight Silksong/",
+    note: (
+      <>
+        /SteamID/userX.dat (where X = 1-4, denotes the save slot)  {" "}
+        <a
+          href="https://store.steampowered.com/account/remotestorageapp/?appid=1030300"
+          className="underline text-green-300 hover:text-green-200"
+          target="_blank"
+          rel="noreferrer"
+        >
+          (Steam Cloud saves)
+        </a>
+      </>
+    ),
+  },
+  {
+    id: "GamePassPC",
+    label: "Game Pass (Windows)",
     path: "%LOCALAPPDATA%/Packages/TeamCherry.Silksong_y4jvztpgccj42/SystemAppData/wgs/",
-    note: "Savegame file name is really long and doesnt have file extension",
+    note: "Savegame file has a really long name and doesn't have a file extension",
   },
   {
     id: "macOS",
@@ -49,18 +67,22 @@ const PLATFORM_OPTIONS: PlatformOption[] = [
     path: "~/Library/Application Support/unity.Team-Cherry.Silksong/",
   },
   {
-    id: "Linux(Steamdeck)",
-    label: "Linux (Steamdeck)",
-    path: "~/.local/share/Team Cherry/Hollow Knight Silksong/",
-    note: "Native Linux: ~/.config/unity3d/Team Cherry/Hollow Knight Silksong/(folder with random characters)/ (userX.dat, where x = savegame slot 1-4)"
+    id: "Linux",
+    label: "Linux",
+    path: "~/.config/unity3d/Team Cherry/Hollow Knight Silksong/",
+    note: (
+      <>
+        /(a folder with random characters)/userX.dat (where X = 1-4, denotes the save slot)
+      </>
+    ),
   },
   {
     id: "Switch",
-    label: "Switch",
+    label: "Nintendo Switch",
     path: "sdmc:/atmosphere/contents/<title-id>/saves/hollow_knight_silksong/",
     note: (
       <>
-        Not that simple: Homebrew and JKSV required (
+        Not a simple process! Requires Homebrew and JKSV (
         <a
           className="underline text-green-300 hover:text-green-200"
           href="https://www.reddit.com/r/HollowKnight/comments/1dacmy1/gamesave_from_switch_to_steam/"
@@ -90,7 +112,7 @@ export default function App() {
   } = useSaveFile();
   const [activeTab, setActiveTab] = useState<TabId>("Stats");
   const [showToast, setShowToast] = useState(false);
-  const [activePlatformId, setActivePlatformId] = useState<PlatformId>("Steam");
+  const [activePlatformId, setActivePlatformId] = useState<PlatformId>("SteamWindows");
 
   const activePlatform =
     PLATFORM_OPTIONS.find(platform => platform.id === activePlatformId) ?? PLATFORM_OPTIONS[0];
@@ -116,7 +138,7 @@ export default function App() {
     >
       <div className="w-full max-w-4xl bg-[#1a1313cc] rounded-lg shadow-lg p-5 mt-0 space-y-5 backdrop-blur-sm">
         <h1 className="text-2xl font-bold text-white text-center">
-          Hollow Knight Silksong Savegame Analyzer
+          Hollow Knight: Silksong Savegame Analyzer
         </h1>
 
         <div className="text-center text-sm">
@@ -164,7 +186,7 @@ export default function App() {
 
         {showToast && (
           <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-[#454d5c] text-white px-4 py-2 rounded shadow-lg z-50">
-            Copied to Clipboard!
+            Copied to clipboard.
           </div>
         )}
 
@@ -189,7 +211,7 @@ export default function App() {
               savePlain,
             })
           ) : (
-            <div className="text-white text-center">No Savefile loaded</div>
+            <div className="text-white text-center">No Savefile loaded.</div>
           )}
         </div>
         <footer className="w-full mt-8 py-4  text-white text-center text-sm  ">

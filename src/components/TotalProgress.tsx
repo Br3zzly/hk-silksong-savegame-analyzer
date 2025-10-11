@@ -21,7 +21,9 @@ export function TotalProgress({ parsedJson }: TotalProgressProps) {
         unlockedSum += item.completionPercent;
       }
     }
-    percent = maxSum > 0 ? Math.round((unlockedSum / maxSum) * 100) : 0;
+    // percent = maxSum > 0 ? Math.round((unlockedSum / maxSum) * 100) : 0;
+    // Use unlockedSum directly to reflect total completion percentage
+    percent = unlockedSum;
   }
 
   return (
