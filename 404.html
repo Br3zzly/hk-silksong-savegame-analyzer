@@ -7,14 +7,21 @@
     <title>Silksong Completionist · Track Your Hollow Knight: Silksong Progress</title>
     <meta name="description" content="Hollow Knight: Silksong Save Analyzer / Tracker: Track and obtain every achievement, tool, skill, and secret in Hollow Knight: Silksong. Perfect for completionists! Simply upload your save file to get started.">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN3TLJS55G"></script>
+    <!-- Google tag (gtag.js) - Only load if GA measurement ID is provided -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-RN3TLJS55G');
+      const gaMeasurementId = 'G-RN3TLJS55G';
+      if (gaMeasurementId && gaMeasurementId !== 'your-ga-measurement-id-here') {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
+        document.head.appendChild(script);
+        
+        // Initialize Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaMeasurementId);
+      }
     </script> 
     <script type="module" crossorigin src="./assets/index-DvbRjpoj.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BFGzgUl-.css">
