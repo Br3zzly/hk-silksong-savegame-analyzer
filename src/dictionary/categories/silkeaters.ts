@@ -3,7 +3,7 @@ import type { TrackableCategory } from "../types";
 export const silkeaters: TrackableCategory = {
   name: "Silkeaters",
   description:
-    "These are the Silkeater cocoons found throughout Pharloom; breaking one lets you obtain a Silkeater. Consume them to retrieve lost valuables (cocoon corpse) after death. You can only obtain them before starting ACT 3, so be sure to find them all beforehand!",
+    "These are the Silkeater cocoons found throughout Pharloom; breaking one lets you obtain a Silkeater. Consume them to retrieve lost valuables (cocoon corpse) after death.",
   sections: [
     {
       name: "Main",

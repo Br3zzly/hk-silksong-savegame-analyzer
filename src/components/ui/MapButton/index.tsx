@@ -38,6 +38,15 @@ export function MapButton({ mapLink, disabled, titleName, children, className }:
   const isEnabled = mapLink && !disabled;
   const isInlineStyle = !!children;
 
+  const getEmbedMapLink = (mapLink: string): string => {
+    if (!mapLink?.includes("mapgenie")) return mapLink;
+    return `${mapLink}${mapLink?.includes("?") ? "&" : "?"}embed=light`;
+  };
+
+  if (!mapLink) {
+    return null;
+  }
+
   return (
     <>
       <Button
@@ -57,7 +66,7 @@ export function MapButton({ mapLink, disabled, titleName, children, className }:
       <Modal isOpen={isModalOpen} onClose={handleClose} title={titleName ? `🗺️ ${titleName}` : "🗺️"}>
         <div className="flex justify-end px-2">
           <a
-            href={mapLink}
+            href={getEmbedMapLink(mapLink)}
             target="_blank"
             rel="noopener noreferrer"
             className="cursor-pointer text-xs text-gray-500 hover:text-blue-400 transition-colors underline decoration-dotted"
@@ -76,7 +85,7 @@ export function MapButton({ mapLink, disabled, titleName, children, className }:
             </div>
           )}
           <iframe
-            src={mapLink}
+            src={getEmbedMapLink(mapLink)}
             className="w-full h-[50vh] rounded-lg border-2 border-gray-700/50 shadow-lg"
             title="Map Location"
             sandbox="allow-scripts allow-same-origin"
